@@ -19,13 +19,46 @@ npm install -g gptignore
 
 GPTIgnore provides two main commands: `generate` and `init`.
 
-### Generate
+### Generate with Custom Path and Output File Name
 
-The `generate` command generates a text file summarizing the project's codebase. It creates a file named `codebase.txt` inside a `gpt` directory in the root of your project.
+The `generate` command can now take optional arguments to specify a custom input path and output file name. This allows you to generate a summary for a specific directory within your project and customize the name of the output file.
+
+#### Usage
 
 ```bash
-gptignore generate
+gptignore generate [path] [outputFileName]
 ```
+
+- **`path`**: (Optional) The directory to process. Defaults to the current working directory if not specified.
+- **`outputFileName`**: (Optional) The name of the output file. Defaults to `codebase.txt` if not specified.
+
+#### Examples
+
+- **Generate for Current Directory**:
+
+  ```bash
+  gptignore generate
+  ```
+
+  This will generate `codebase.txt` in the `gpt` directory from the current working directory.
+
+- **Generate for a Specific Directory**:
+
+  ```bash
+  gptignore generate ./src
+  ```
+
+  This will generate `codebase.txt` from the `src` directory, summarizing only the contents of that directory.
+
+- **Generate with Specific Output File Name**:
+
+  ```bash
+  gptignore generate ./src custom-output.txt
+  ```
+
+  This will generate `custom-output.txt` in the `gpt` directory, containing data from the `src` directory.
+
+By utilizing these options, you can easily focus on specific parts of your project and organize your output files as needed.
 
 #### Example
 
@@ -78,3 +111,7 @@ Contributions are welcome! Please open an issue or submit a pull request on the 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+```
+
+```

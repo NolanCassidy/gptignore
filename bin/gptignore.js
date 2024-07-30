@@ -21,7 +21,6 @@ const getIgnoredPaths = () => {
       .split("\n")
       .map((line) => line.trim())
       .filter((line) => line && !line.startsWith("#")); // Ignore empty lines and comments
-    // console.log("Ignored paths from .gptignore:", ignoredPaths);
   } else {
     console.log(".gptignore file not found");
   }
@@ -77,10 +76,13 @@ const getAllFilesAndFolders = (
 };
 
 // Generate the AI file
-const generateAIFile = () => {
-  const rootDir = process.cwd();
-  const outputDir = path.join(rootDir, "gpt");
-  const outputFilePath = path.join(outputDir, "codebase.txt");
+const generateAIFile = (
+  inputPath = process.cwd(),
+  outputFileName = "codebase.txt"
+) => {
+  const rootDir = path.resolve(inputPath);
+  const outputDir = path.join(process.cwd(), "gpt");
+  const outputFilePath = path.join(outputDir, outputFileName);
 
   console.log(`Current working directory: ${rootDir}`);
 
@@ -126,7 +128,9 @@ const main = () => {
 
   switch (command) {
     case "generate":
-      generateAIFile();
+      const inputPath = args[0] || process.cwd();
+      const outputFileName = args[1] || "codebase.txt";
+      generateAIFile(inputPath, outputFileName);
       break;
     case "init":
       initGptignore();
