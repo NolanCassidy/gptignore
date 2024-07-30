@@ -10,6 +10,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node bin/gptignore.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NolanCassidy/gptignore.git"
+  },
   "author": "Nolan Cassidy",
   "license": "ISC"
 }
