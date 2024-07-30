@@ -1,0 +1,15 @@
+{
+  "name": "gptignore",
+  "version": "1.0.0",
+  "description": "A CLI tool to generate a comprehensive AI-friendly text file, including folder structures and file contents, while respecting a custom .gptignore file for exclusions.",
+  "bin": {
+    "gptignore": "./bin/gptignore.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/gptignore.js"
+  },
+  "author": "Nolan Cassidy",
+  "license": "ISC"
+}
