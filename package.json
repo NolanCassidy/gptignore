@@ -1,6 +1,6 @@
 {
   "name": "gptignore",
-  "version": "1.1.1",
+  "version": "1.1.0",
   "description": "A CLI tool to generate a comprehensive AI-friendly text file, including folder structures and file contents, while respecting a custom .gptignore file for exclusions.",
   "bin": {
     "gptignore": "./bin/gptignore.js"
@@ -15,5 +15,8 @@
     "url": "https://github.com/NolanCassidy/gptignore.git"
   },
   "author": "Nolan Cassidy",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cli-progress": "^3.12.0"
+  }
 }

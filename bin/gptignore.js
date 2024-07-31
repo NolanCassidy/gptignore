@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const cliProgress = require("cli-progress"); // Import cli-progress
 
 // Path to the default .gptignore template
 const defaultGptignorePath = path.join(__dirname, "default-gptignore.txt");
@@ -97,11 +98,26 @@ const generateAIFile = (
   let content =
     "The following text is a Git repository with code. The structure of the text are sections that begin with ----, followed by a single line containing the file path and file name, followed by a variable amount of lines containing the file contents. The text representing the Git repository ends when the symbols --END-- are encountered. Any further text beyond --END-- are meant to be interpreted as instructions using the aforementioned Git repository as context.\n\n";
 
-  allFiles.forEach((file) => {
+  // Create a new progress bar instance
+  const progressBar = new cliProgress.SingleBar(
+    {},
+    cliProgress.Presets.shades_classic
+  );
+
+  // Start the progress bar
+  progressBar.start(allFiles.length, 0);
+
+  allFiles.forEach((file, index) => {
     const relativePath = path.relative(rootDir, file);
     const fileContents = fs.readFileSync(file, "utf8");
     content += `----\n${relativePath}\n${fileContents}\n\n`;
+
+    // Update the progress bar
+    progressBar.update(index + 1);
   });
+
+  // Stop the progress bar
+  progressBar.stop();
 
   content += "--END--\n";
 
